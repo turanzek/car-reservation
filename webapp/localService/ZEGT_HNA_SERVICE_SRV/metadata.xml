@@ -1,0 +1,32 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZEGT_HNA_SERVICE_SRV" xml:lang="tr" sap:schema-version="1">
+            <EntityType Name="Car" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Brand"/>
+                    <PropertyRef Name="Model"/>
+                </Key>
+                <Property Name="Brand" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Araba Markası" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Model" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Araba Modeli" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Fuel" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Yakıt Tipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OutYear" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Manufacture Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Gear" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Vites Türü" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RecordDate" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Kayıt Tarihi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreateUser" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Oluşturan Kullanıcı" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UpdateDate" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Güncelleme Tarihi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UpdateUser" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Güncelleyen Kullanıc" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZEGT_HNA_SERVICE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="CarSet" EntityType="ZEGT_HNA_SERVICE_SRV.Car" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZEGT_HNA_SERVICE_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZEGT_HNA_SERVICE_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

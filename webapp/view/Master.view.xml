@@ -1,0 +1,125 @@
+<mvc:View
+	controllerName="int.training.reservation.controller.Master"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic">
+	<semantic:SemanticPage id="page">
+		<semantic:titleHeading>
+			<Title
+				id="masterHeaderTitle"
+				text="{
+					parts: [
+						'i18n>masterTitleCount',
+						'masterView>/titleCount'
+					],
+					formatter: 'jQuery.sap.formatMessage'
+			}"/>
+		</semantic:titleHeading>
+		<semantic:content>
+			<!-- For client side filtering add this to the items attribute: parameters: {operationMode: 'Client'}}" -->
+			<List
+				id="list"
+				width="auto"
+				class="sapFDynamicPageAlignContent"
+				items="{
+					path: '/VehicleSet',
+					parameters: {expand: 'ToReservation'},
+					sorter: {
+						path: 'Plate',
+						descending: true
+					},
+					groupHeaderFactory: '.createGroupHeader'
+				}"
+				busyIndicatorDelay="{masterView>/delay}"
+				noDataText="{masterView>/noDataText}"
+				mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
+				growing="true"
+				growingScrollToLoad="true"
+				updateFinished=".onUpdateFinished"
+				selectionChange=".onSelectionChange">
+				<infoToolbar>
+					<Toolbar
+						active="true"
+						id="filterBar"
+						visible="{masterView>/isFilterBarVisible}"
+						press=".onOpenViewSettings">
+						<Title
+							id="filterBarLabel"
+							text="{masterView>/filterBarLabel}" />
+					</Toolbar>
+				</infoToolbar>
+				<headerToolbar>
+					<OverflowToolbar>
+						<SearchField
+							id="searchField"
+							showRefreshButton="true"
+							tooltip="{i18n>masterSearchTooltip}"
+							width="100%"
+							search=".onSearch">
+							<layoutData>
+								<OverflowToolbarLayoutData
+									minWidth="150px"
+									maxWidth="240px"
+									shrinkable="true"
+									priority="NeverOverflow"/>
+							</layoutData>
+						</SearchField>
+						<ToolbarSpacer/>
+						<Button
+							id="filterButton"
+							press=".onOpenViewSettings"
+							icon="sap-icon://filter"
+							type="Transparent"/>
+						<Button
+							id="groupButton"
+							press=".onOpenViewSettings"
+							icon="sap-icon://group-2"
+							type="Transparent"/>
+					</OverflowToolbar>
+				</headerToolbar>
+				<items>
+					<ObjectListItem
+						type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}"
+						
+						title="{
+							parts: [
+							'Plate'
+							],
+							formatter: 'jQuery.sap.formatMessage'
+						}"
+						number="{
+							parts: [
+							{path: 'Marka'},
+							{path: 'Model'}
+							]
+						}">
+						<firstStatus>
+							<ObjectStatus
+								state="{
+									parts: [
+										{path: 'Reserved'},
+										{path: 'Model'},
+										{path: 'Vehicleyear'}
+									],
+									formatter:'.formatter.ReserveState'
+								}"
+								text="{
+									parts: [
+										{path: 'Reserved'},
+										{path: 'Model'},
+										{path: 'Vehicleyear'}
+									],
+									formatter:'.formatter.ReserveText'
+								}"/>
+
+						</firstStatus>
+						 <attributes>
+							<ObjectAttribute text="{Vehicleyear}" />
+							<ObjectAttribute text="{Fiyat} {Currency}" />				
+						</attributes> 
+					</ObjectListItem>
+				</items>
+			</List>
+		</semantic:content>
+	</semantic:SemanticPage>
+</mvc:View>

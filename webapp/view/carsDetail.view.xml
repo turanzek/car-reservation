@@ -1,0 +1,27 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form">
+	<VBox>
+		<f:SimpleForm id="SimpleFormShipAddress"
+			editable="false"
+			layout="ResponsiveGridLayout"
+			title="{i18n>detailcarTitle}"
+			labelSpanL="3"
+			labelSpanM="3"
+			emptySpanL="4"
+			emptySpanM="4"
+			columnsL="1"
+			columnsM="1" >
+			<f:content>
+				<Label text="{i18n>detailMarka}" />
+				<Text text="{Marka}" />
+				<Label text="{i18n>detailModel}" />
+				<Text text="{Model}" />
+				<Label text="{i18n>detailvehicleYear}" />
+					<Text text="{Vehicleyear}" />
+
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+</mvc:View>

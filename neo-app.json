@@ -1,0 +1,40 @@
+{
+  "welcomeFile": "index.html",
+  "routes": [
+    {
+      "path": "/North",
+      "target": {
+        "type": "destination",
+        "name": "North"
+      },
+      "description": "North"
+    },
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "MBIS",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "MBIS\t\t"
+    }
+  ]
+}

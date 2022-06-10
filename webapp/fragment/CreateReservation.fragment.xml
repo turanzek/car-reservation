@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog id="dialogCar" title="Rezervasyon Oluştur">
+		<content>
+			<f:SimpleForm id="SimpleFormChange354" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+				labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+				singleContainerFullSize="false">
+				<f:content>
+					<Label text="Plaka" />
+					<Input editable="false" id="inputPlate" value="{Plate}"/>		
+					
+					<Label text="{i18n>Marka}"/>
+					<Input id="inputMarka" value="{
+						      path: 'Marka'}	" editable = "false"/>		
+
+					<Label text="{i18n>Model}"/>
+					<Input id="inputModel" value="{
+						      path: 'Model'}	" editable = "false"/>		
+
+					<Label text="Ad Soyad"/>
+					<Input id="inputDriver"/>
+					<Label text="Rezervasyon Başl.Tarihi"/>
+					<DateTimePicker id = 'inputStartingDate'  value="{
+						path: 'popupModel>/StartingDate',
+						type: 'sap.ui.model.type.DateTime',  
+						strictParsing: 'true'
+					  }" editable="{= ${Reserved} === '' ? true : false }"/>
+                    <Label text="Rezervasyon Bitiş.Tarih" visible="{= ${Reserved} === 'X' ? true : false }" />
+					<DateTimePicker id = 'inputEndingDate' visible="{= ${Reserved} === 'X' ? true : false }" value="{
+						path: 'popupModel>/EndingDate',
+						type: 'sap.ui.model.type.DateTime',  
+						strictParsing: 'true'
+					  }" />
+			  
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton>
+			<Button text="Kaydet" press=".onPressReservationSave"/>
+		</beginButton>
+		<endButton>
+			<Button text="Vazgeç" press=".onPressCancelReservation" type="Reject"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

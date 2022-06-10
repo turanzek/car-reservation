@@ -1,0 +1,126 @@
+<mvc:View controllerName="int.training.reservation.controller.Detail" xmlns="sap.m" xmlns:semantic="sap.f.semantic" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:uxap="sap.uxap">
+	<semantic:SemanticPage id="page" busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}" showFooter="true">
+		<semantic:titleHeading>
+			<Title text="{
+					parts: [
+						'i18n>commonItemTitle',
+						'Plate'
+					],
+					formatter: 'jQuery.sap.formatMessage'
+				}" />
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<l:HorizontalLayout>
+				<l:VerticalLayout class="sapUiMediumMarginEnd">
+					<ObjectAttribute title="{i18n>plateNo}" text="{
+							path: 'Plate'}	" />
+							<ObjectAttribute id="sReserved" title="{i18n>Reserved}" text="{
+								path: 'Reserved'}	" />
+							<ObjectAttribute title="{i18n>detailDate}" text="{
+							path: 'PlateCreateDate',
+							type: 'sap.ui.model.type.Date',
+							formatOptions: { style: 'medium' }
+						}" />
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="{i18n>priceText}" />
+					<ObjectNumber number="{
+							parts: [
+								{path:'Fiyat'},
+								{path:'Currency'}
+								
+							],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {
+								showMeasure: false
+							}
+						}" unit="{Currency}" />
+				</l:VerticalLayout>
+			</l:HorizontalLayout>
+		</semantic:headerContent>
+		<semantic:content>
+			<l:VerticalLayout>
+				<IconTabBar id="iconTabBar" headerBackgroundDesign="Transparent" select=".onTabSelect" selectedKey="{detailView>/selectedTab}">
+					<items>
+						<IconTabFilter id="iconTabFiltercarsDetail" icon="sap-icon://shipping-status" tooltip="{i18n>detailIconTabBarcarsDetail}" key="carsDetail"></IconTabFilter>
+						<IconTabFilter id="iconTabFilterdriverDetail" icon="sap-icon://employee" tooltip="{i18n>detailIconTabBardriverDetail}" key="driverDetail"></IconTabFilter>
+					</items>
+				</IconTabBar>
+
+				<Table id="lineItemsList" class="sapUiSmallMarginTop" width="auto" items="{ToReservation}" updateFinished=".onListUpdateFinished" noDataText="{i18n>detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView>/lineItemTableDelay}">
+					<headerToolbar>
+						<Toolbar id="lineItemsToolbar">
+							<Title id="lineItemsHeader" text="{detailView>/lineItemListTitle}" />
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="7em">
+							<Text text="{i18n>detailLineItemTableMarka}" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End" width="7em">
+							<Text text="{i18n>detailLineItemTableModel}" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End" width="7em">
+							<Text text="{i18n>detailLineItemTableStartDate}" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End" width="7em">
+							<Text text="{i18n>detailLineItemTableEndDate}" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End" width="10em">
+							<Text text="{i18n>detailLineItemTableDriver}" />
+						</Column>
+						<Column width="7em">
+							<Text text="{i18n>detailLineItemTableStartKm}" />
+						</Column>
+						<Column width="7em">
+							<Text text="{i18n>detailLineItemTableEndKm} " /> 
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<ObjectIdentifier title="{Name}" text="{Marka}" />
+								<Text text="{Model}" />
+								<ObjectAttribute text="{ path: 'Startdate',
+								type: 'sap.ui.model.type.Date',
+								formatOptions: { style: 'medium' } }" />
+								<ObjectAttribute text="{ path: 'Enddate',
+								type: 'sap.ui.model.type.Date',
+								formatOptions: { style: 'medium' } }" />
+								<ObjectAttribute text="{Driver}" />
+								<ObjectAttribute text="{StartingKm}" />
+								<ObjectAttribute text="{EndingKm}" />
+
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</l:VerticalLayout>
+		</semantic:content>
+
+
+		<semantic:positiveAction>
+			<semantic:PositiveAction text="{i18n>startReservation}" press="onPressStartReservation"  visible="{= ${Reserved} !== 'X' ? true : false }"/>
+		</semantic:positiveAction>
+		<semantic:negativeAction>
+		<!-- <semantic:NegativeAction text="{i18n>finishReservation}" press="onPressFinishReservation" visible="{VISIABLE>/visparam1}" /> -->
+			<semantic:NegativeAction text="{i18n>finishReservation}" press="onPressFinishReservation"  visible="{= ${Reserved} === 'X' ? true : false }" />
+			</semantic:negativeAction>
+
+
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press=".onSendEmailPress" />
+		</semantic:sendEmailAction>
+		<semantic:closeAction>
+			<semantic:CloseAction id="closeColumn" press=".onCloseDetailPress" />
+		</semantic:closeAction>
+		<semantic:fullScreenAction>
+			<semantic:FullScreenAction id="enterFullScreen" visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}" press="toggleFullScreen" />
+		</semantic:fullScreenAction>
+		<semantic:exitFullScreenAction>
+			<semantic:ExitFullScreenAction id="exitFullScreen" visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}" press="toggleFullScreen" />
+		</semantic:exitFullScreenAction>
+	</semantic:SemanticPage>
+
+
+</mvc:View>

@@ -1,0 +1,29 @@
+<mvc:View
+	controllerName="int.training.reservation.controller.Detail"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<VBox>
+		<f:SimpleForm id="SimpleFormProcessorInfo"
+			editable="false"
+			layout="ResponsiveGridLayout"
+			title="{i18n>detailDriverTitle}"
+			labelSpanL="3"
+			labelSpanM="3"
+			emptySpanL="4"
+			emptySpanM="4"
+			columnsL="2"
+			columnsM="2">
+			<f:content>
+				<core:Title text="{i18n>detailsDriverTitle}"/>
+				<Label text="{i18n>detailDriverName}" />
+				<Text text="{Driver}" />
+<!-- 				<Label text="{i18n>detaildriverPhone}" />
+				<Link text="{Phone}" press="_onHandleTelephonePress" /> -->
+				<core:Title text="{i18n>photoProcessorTitle}" />
+				<Image src="{path:'Employee/Photo', formatter: '.formatter.handleBinaryContent'}" width="50%" height="50%" />
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+</mvc:View>

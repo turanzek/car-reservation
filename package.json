@@ -1,0 +1,40 @@
+{
+  "name": "CarReservation",
+  "private": true,
+  "version": "1.0.0",
+  "author": "SAP SE",
+  "description": "UI5 Demo App - Car Reservation",
+  "scripts": {
+    "start": "ui5 serve",
+    "lint": "eslint webapp",
+    "build": "ui5 build --all --clean-dest",
+    "test": "ui5 serve",
+    "deploy": "ui5 build --exclude-task escapeNonAsciiCharacters"
+  },
+  "dependencies": {
+    "@openui5/sap.f": "^1",
+    "@openui5/sap.m": "^1",
+    "@openui5/sap.ui.core": "^1",
+    "@openui5/sap.ui.layout": "^1",
+    "@openui5/themelib_sap_fiori_3": "^1",
+    "@sap/ux-ui5-fe-mockserver-middleware": "^1.5.3",
+    "ui5-middleware-simpleproxy": "^0.5.1",
+    "ui5-task-nwabap-deployer": "^1.0.15"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^2.14.7",
+    "eslint": "^4.19.1",
+    "ui5-middleware-livereload": "^0.4.3",
+    "ui5-middleware-servestatic": "^0.3.3",
+    "ui5-middleware-simpleproxy": "^0.5.1",
+    "ui5-task-nwabap-deployer": "^1.0.15"
+  },
+  "ui5": {
+    "dependencies": [
+      "ui5-middleware-servestatic",
+      "ui5-middleware-simpleproxy",
+      "ui5-middleware-livereload",
+      "ui5-task-nwabap-deployer"
+    ]
+  }
+}
